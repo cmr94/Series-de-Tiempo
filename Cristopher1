@@ -1,0 +1,28 @@
+###ejercicio clase
+#bajar BD Variables del cuestionario de ocupacion y empleo I del portal del INEGI 2° trimestre
+#Importar la base de datos .dbf en R
+#Seleccionar solo a las entidades...
+#Etiquetar las preguntas ¿Aproximadamente cuantas personas, incluyendo el dueño, laboran donde trabaja...?
+# 1-5 personas, 6-10, 11-20,21-50, 51 y mas
+#La semana pasada, ¿... tuvo poco trabajo que hacer?
+#
+#p2e
+#ausente temporal, pensionado o jubilado, se dedica al hogar, otra
+#hacer tablas expandidas de las variables que etiquetaron con sexo 
+install.packages("foreign")
+require (foreign)
+cuestionario <- read.dbf("C:\\Users\\SALA-C15\\Downloads\\coe1t215\\COE1T215.dbf")
+View(cuestionario)
+
+entidad<- subset(cuestionario,ENT==21)
+
+entidad$P51<- ordered(entidad$P5,levels=c("1","2","3","9"),labels=c("Si", " No trabajó la semana pasada","No se encontró en esa situación","No sabe"))
+table(entidad$P51,entidad$P1)
+
+entidad$P2E1<-ordered(entidad$P2E,levels=c("1","2","3","4","5","6","9"),labels=c("una persona temporalmente ausente de su actividad u oficio","pensionado o jubilado de su empleo","estudiante","una persona que se dedica a los quehaceres de su","una persona con alguna limitación física o mental que le impide trabajar por el resto de su vida", "otra condicion", "no sabe"))
+table(entidad$P2E1, entidad$P1)
+
+entidad$P3L1<-ordered(entidad$P3L,levels=c("01","02","03","04","05","06","07","08","09","10","11","99"),labels=c("1 persona","2-5 personas","6-10 personas","11-15 personas","16-20 personas","21-30 personas","31-50 personas","51-100 personas","101-250 personas","251-500 personas","501 y mas personas","no sabe"))
+table(entidad$P3L1,entidad$P1)
+
+
