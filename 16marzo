@@ -1,0 +1,64 @@
+#### Generar 4 objetos con datos aleatorios y que tengan 60 datos
+### dato 1 de n?mero de profesionista (mill)rango de 5 a 8
+### dato 2 crec pib rango de 0 a 5
+### dato 3 porcentaje de ocupados rango de 40 a 60
+### dato 4 porcentaje de desocupados rango de 3 a 8
+> prof<- sample(5:8,60,replace=T)
+> pib<- sample(0:5,60,replace=T)
+> oc<- sample(40:60, 60, replace=T)
+> desoc<- sample(3:8, 60, replace=T)
+#### 1) una vez que generen los datos hacer un data frame de los 4 objetos
+> tabla=data.frame(prof, pib, oc, desoc)
+#### 2) mostrar en consola los primeros 12 y ultimos 12 datos
+> pr<- tabla[1:12,1:4]
+> ul<- tabla[49:60,1:4]
+> tabla1<- rbind(pr,ul)
+> View(tabla1)
+#### 3) convertir los objetos en series de tiempo desde el data frame comezando en 2010 y son datos mensuales
+> st<-ts(tabla1, start=2010,end=2015,frequency=12)
+> stprof<-ts(prof, start=2010,end=2015,frequency=12)
+> stpib<-ts(pib, start=2010,end=2015,frequency=12)
+> stoc<-ts(oc, start=2010,end=2015,frequency=12)
+> stdesoc<-ts(desoc, start=2010,end=2015,frequency=12)
+#### 4) graficar los profesionistas y ocupados en la misma imagen
+X11()
+layout(1:2)
+plot(stprof)
+plot(stoc)
+#### 5) graficar pib y desocupados en la misma imagen
+X11()
+layout(1:2)
+plot(stpib)
+plot(stdesoc)
+#### 6) graficar todas juntas
+X11()
+plot(st)
+#### 7) creaR serie de tiempo multiple!!!!
+sm<- ts.intersect(stprof,stoc,stpib,stdesoc)
+#### 8) graficar serie de tiempo multiple 
+X11()
+plot(sm)
+#### 9) dividir serie de tiempo y graficar solo el ultimo año...
+tabla2<-data.frame(ul)
+stul<-ts(tabla2, start=2014,end=2015,frequency=12)
+X11()
+plot(stul)
+#### 8 ) analizar las graficas ( si hay alguna tendencia o variacion estacional) (investigar)
+## para analizar si hay tendencia se utiliza el metodo de minimo cuadrados,
+## y para saber si tiene una variacion estacional se utiliza la tecnica de promedios moviles
+## http://www.seduca2.uaemex.mx/ckfinder/uploads/files/u3tema_3_series_de_t.pdf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
