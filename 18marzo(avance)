@@ -1,0 +1,13 @@
+desoc<- sample(3:8, 44, replace=T)
+tdesoc<-ts(desoc, start=2010,end=2015,frequency=12)
+tdesoc.de<- decompose(tdesoc)
+names(tdesoc.de)
+X11()
+plot(tdesoc.de)
+X11()
+plot(decompose(tdesoc))
+Trend<- tdesoc.de$trend
+Seasonal<- tdesoc.de$seasonal
+tdesoc.dem<- decompose(tdesoc, type="mult")
+X11()
+plot(tdesoc.dem)
