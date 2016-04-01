@@ -1,0 +1,37 @@
+##descargar precios historicos de tres acciones y elaborar sus series de tiempo
+jpeg(filename="cemex.jpg")
+cemex<- read.csv("C:/Users/SALA-C15/Desktop/CEMEX.csv",header=T)
+cemexts<- ts(cemex[5], start=2000,frequency=12)
+X11()
+plot(cemexts, main="CEMEX", xlab="Año", ylab="precio Accion")
+dev.off()
+##es una accion inestable con caidas muy pronunciadas y una tendencia a la baja
+##caidas ciclicas (2008,2012,2016) y poca estacionalidad
+
+jpeg(filename="microsoft.jpg")
+microsoft<- read.csv("C:/Users/SALA-C15/Desktop/Microsoft.csv",header=T)
+microsoftts<- ts(microsoft[5], start=2000,frequency=12)
+X11()
+plot(microsoftts,main="Microsoft", xlab="Año", ylab="precio Accion")
+dev.off()
+## Al iniciar la era tecnologia, se disparan los precios de la accion
+##conforme transcurre el tiempo el precio se estabiliza por la dinamica 
+##del mercado, volciendose una sT ciclica, estacionaria y con tendencia 
+##en su mayoria positiva
+
+jpeg(filename="bimbo.jpg")
+bimbo<- read.csv("C:/Users/SALA-C15/Desktop/Bimbo.csv",header=T)
+bimbots<- ts(bimbo[5], start=2000,frequency=12)
+X11()
+plot(bimbots,main="Bimbo", xlab="Año", ylab="precio Accion")
+dev.off()
+##tiene tendencia, y es ciclica en los periodos mas notables es (2008 y 2011),
+##tiene tendencia positiva, sin embargo ha atravesado situaciones economicas 
+##dificiles y con ello bajas en el precio de la accion
+
+
+##Por concluir yo invertiria en las acciones de Microsoft por que en comparacion con
+##las otras dos acciones su tendencia es positiva y las caidas son de menor magnitud 
+##comparadas con los demas, al igual que el precio de la accion es mas alto comparado
+##con las otras dos es decir; la accion es mas propensa a aumentar su precio y con 
+## ello generar ganancias que yo buscaria.
