@@ -1,0 +1,59 @@
+#Primero se generan las st para tener los datos necesarios
+cemex<- read.csv("C:/Users/SALA-C27/Desktop/CEMEX.csv",header=T)
+cemexts<- ts(cemex[5], start=2000,frequency=12,end=)
+
+microsoft<- read.csv("C:/Users/SALA-C27/Desktop/Microsoft.csv",header=T)
+microsoftts<- ts(microsoft[5], start=2000,frequency=12)
+
+bimbo<- read.csv("C:/Users/SALA-C27/Desktop/Bimbo.csv",header=T)
+bimbots<- ts(bimbo[5], start=2000,frequency=12)
+
+#Despues se crean los seasonplot para observar los años en los que tienen tendencia,
+#se convierte ciclica o si tiene estacionalidad
+install.packages ("fpp")
+require (fpp)
+
+x11()
+seasonplot(bimbots,s=12 year.labels=TRUE,
+           main="valor acciones Bimbo",
+           ylab="valor cierre",col=rainbow(20),year.labels.left=TRUE,pch=19)
+
+x11()
+seasonplot(cemexts,s=12 year.labels=TRUE,
+           main="valor acciones Cemex",
+           ylab="valor cierre",col=rainbow(20),year.labels.left=TRUE,pch=19)
+
+x11()
+seasonplot(microsoftts,s=12 year.labels=TRUE,
+           main="valor acciones Microsoft",
+           ylab="valor cierre",col=rainbow(20),year.labels.left=TRUE,pch=19)
+#Se eligen los años que se van a comparar
+##NO PUDE HACER EL ANALISIS YA QUE EL "SEASONPLOT" NO FUNCIONA EN LA VERSION DE R
+
+#Por ultimo se genera el analisis de cov y correlacion de las tres empresas
+
+#x<-bimbo
+#y<-microsoft
+#z<-cemex
+
+#sd(x)
+sdx<-sqrt(var(bimbots))
+#sd(y)
+sdy<-sqrt(var(microsoftts))
+#sd(z)
+sdz<-sqrt(var(cemexts))
+
+#cov(x,y)
+c1<-cov(bimbots,microsoftts)
+#cov(x,z)
+c2<-cov(bimbots,cemexts)
+#cov(y,z)
+c3<-cov(microsoftts,cemexts)
+
+
+#Cor(x, y) = Cov(x, y) / sd(x)sd(y)
+cor1<-c1/(sdx*sdy)
+#Cor(x, z) = Cov(x, z) / sd(x)sd(z)
+cor2<-c2/(sdx*sdz)
+#Cor(y, z) = Cov(y, z) / sd(y)sd(z)
+cor3<-c3/(sdy*sdz)
