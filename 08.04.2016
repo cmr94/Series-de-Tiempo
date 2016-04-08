@@ -1,0 +1,100 @@
+#EXAMEN
+##1) Generarr UDS un script
+##2) Con un script ya hecho determinar que hacen las lineas indicadas (explicar)
+
+#ESTRUCTURA DEL EXAMEN
+##1)Manejo de base de datos en R 
+###(exportar bases,etiquetar,generar una base de datos, recodificar, seleccionar casos, graficar)
+##2)Series de tiempo en R
+###(Declarar una ST, dividir ST, graficar ST, interpretar graficas con estacionalidad, tendencia y ciclo)
+###(Determinar estacionalidad en una ST con la funcion autocorrelacion, claculo de correlacion y covarianza)
+
+#### Funcion de autocorrelacion!!1
+###La autocorrelación mide la correlación entre dos variables separadas por k periodos. 
+#### propiedades de la autocorrelacion
+#P0 = 1 
+#-1<= P0<=1
+# simetria Pj= pj-1
+install.packages("fpp")
+require (fpp)
+Acf (beer)## funcion para conocer la autocorrelacion de los datos
+xx<- Acf(beer,main="ACF of quarterly beer production")
+names(xx)
+xx$acf
+
+Acf(beer,main="ACF of quarterly beer production")
+
+#Results for first 9 lags for beer data:
+r1     r2      r3    r4    r5    r6      r7    r8    r9
+−0.126 −0.650 −0.094 0.863 −0.099 −0.642 −0.098 0.834 −0.116
+### R4 superior a la de los otros retardos . 
+#Esto es debido a el patrón estacional de los datos
+
+#### LA GRAFICA QUE GENERA EL ACF se le denomina correlograma y permite identificar 
+##### la autocorrelacion en una serie de tiempo.... por ejemplo se puede observar
+## que r2, r4, r6, y r8 TIENEN 
+
+##Si hay estacionalidad , la ACF en el desfase temporal será grande y positivo.
+
+netflix<-read.csv("C://Users/SALA-C22/Desktop/netflix.csv",header = T)
+netflixts<-ts(netflix[,5], start=2015, frequency = 12)
+plot.ts(netflixts)
+Acf(netflixts)
+xx<- Acf(netflixts,main="ACF of quarterly beer production")
+xx$acf
+
+
+EJEMPOLO 
+fc <- rwf(dj)
+res <- residuals(fc)
+plot(res)
+hist(res,breaks="FD")
+ww<- Acf(res,main="")
+ww$acf
+xxxx<- read.csv ("/home/sgr/Dropbox/Dropbox1/fac economia/actuaria/series de tiempo/desoc, asal y til1.csv")
+xxxx<-ts(xxxx)
+ss<- Acf (xxxx) 
+ss$acf
+
+########################pronosticos
+
+l#os residuos en el pronóstico : diferencia entre
+#valor observado y su pronóstico basado en todos
+#observaciones anteriores : et = yt - yt | t - 1 .
+#Tres posibilidades de los residuos
+#dos supuestos
+# 1)  { Et } no correlacionado . Si no lo son , entonces
+# información que queda en los residuos que se debe utilizar
+#en las previsiones de computación .
+#2) {et} con media cero si no cumple entonces los pronosticos estan sesgados
+
+##propiedades
+#1) et varianza constante
+#2) et es normalmente distribuido
+
+
+### TENEMOS LA ECUACION 
+#yˆt|t−1 = yt−1
+#et = yt − yt−1 son los residuos 
+help (rwf)
+
+
+#Proceso estocástico estacionario
+#Un proceso estocástico se dice que es estacionario si su media y su varianza son 
+#constantes en el tiempo y si el valor de la covarianza 
+#entre dos periodos depende solamente de la distancia o rezago entre estos
+#dos periodos de tiempo y no del tiempo en el cual se ha calculado la covarianza.
+
+
+
+
+
+
+
+
+
+donde , la covarianza (o autocovarianza) al rezago , es la covarianza entre los valores de y ,
+que están separados periodos.
+En resumen si una serie de tiempo es estacionaria, su media, su varianza y su autocovarianza (en
+                                                                                              diferentes rezagos) permanecen iguales sin importar el momento en el cual se midan; es decir, son
+invariantes respecto al tiempo. 
