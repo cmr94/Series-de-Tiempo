@@ -1,0 +1,59 @@
+##EXAMEN
+##install.packages(foreign)
+## as.numeric(as.character(bd$variable))
+
+## precod<-subset(bd,((x<0)&(x>Y))
+
+##attach(precod) sirve para adjuntar una base y las sig funciones se hara referencia a dicha bd
+##dettach para terminar de usar la bd
+
+##hist(variable,main,xlab,ylab,xlim=c(0,n),ylim=c(0,n),border=T,pch=30,col=c()
+
+##install.packages("questionr") ponderar casos
+#c1<-wtd.table(bd$var1,weights=bd$var2) factor de expansion
+##sacar procentajes
+#c1.1<-round((var/margin.table(bd))*100,2)
+
+##exportar con csv
+
+##Etiquetar
+#bd$var<-ordered(bd$var,levels=c(1,2),labels=c("hombres","mujeres"))
+
+##recodificar
+#metodo 1
+#bd$var[as.numeric(bd$var)>=0 & as.numeric(bd$var)<=2]<-1
+#bd$var[as.numeric(bd$var)>=3 & as.numeric(bd$var)<=4]<-2
+#metodo 2
+#attach(bd)
+#bd$var<-ifelse(as.numeric(var)>=1 & as.numeric(var)<=2,1, ifelse(as.numeric(var)==3,2,3))
+
+##series de tiempo
+#desoc<-sample(3:8,44,replace=F) replace(sin remplazo(T), F cuando el intervalo a:b sea menor a n)
+#tdescoc<-ts(desoc,frequency=4,start=2005)
+#var<-ts(bd[a:b,#col],frequency=4,start=2000)
+#stmultiple<- ts.intersect(st1,st2,st3,st4,...,stn)
+
+##separar st
+#serie05.09<-window(stmultiple,star=c(2005,1),end=c(2009,4))
+#serie10.15<-window(stmultiple,star=c(2010,1),end=c(2015,4))
+#plot(serie05.09)
+#plot(serie10.15)
+##para saber donde empieza y donde termina
+#start(stmultiple)
+#end(stmultiple)
+
+##descomposicion dest
+#st<-decompose(var)#por default es el modelo aditivo
+#names(st)#trend=tendencia(Mt),seasonal=efectoestacional(St) random=error(Zt)
+#plot(st,col="",xlab,ylab)
+#Trend<-st$trend
+#Season<-st$seasonal
+
+##correlacion y covarianza y fn de autocorrelacion
+#sum((x-mean(x))*(y-mean(y)))/(n-1)
+#cov(x,y)
+#cor(x,y)=cov(x,y)/sd(x)*sd(y)
+
+##install.packages("forecast")
+##install.packages("fpp")
+           
