@@ -1,0 +1,52 @@
+install.packages("foreign")
+require(foreign)
+
+CRPIB<-read.cvs("C://Users//SALA-C30//Desktop//CRECIMIENTOPIB.cvs",header=TRUE)
+CRPIBST<-ts(CRPIB$México,start=1961)
+x11()
+plot(CRPIBST, main="Crecimiento del PIB 1961-2014", xlab="Año",ylab="Porcentaje")
+
+
+install.packages("fpp")
+require(fpp)
+
+CRPIB1960<-window(CRPIBST,start=(1961),end=c(2014))
+X11()
+plot(CRPIB1960)
+X11()
+plot(CRPIB1960,main="TASA DE CRECIMIENTO DEL PIB 1960-2015", ylab="TASA DE CRECIMIENTO",xlab="AÑO")
+res2<-residuals(snaive(CRPIB1960))
+res3<-residuals(rwf(CRPIB1960,drift=T))
+res2
+res3
+x11()
+plot(res2, main="Residuals de ingenuo estacional",ylab="residuales",xlab="años")
+X11()
+Acf(res2,main="ACF de residuales")
+x11()
+hist(res2,main="Histograma residuales")
+
+x11()
+plot(res3, main="Residuals de deriva",ylab="residuales",xlab="años")
+X11()
+Acf(res3,main="ACF de residuales")
+x11()
+hist(res3,nclass="FD",main="Histograma residuales")
+
+##Hacer analisis de residuos con el metodo de la media y el ingenuo
+res1<-residuals(meanf(CRPIB1960))
+x11()
+layout(2:1)
+plot(res1, main="Residuals de meanF",ylab="residuales",xlab="años")
+plot(res2, main="Residuals de ingenuo estacional",ylab="residuales",xlab="años")
+X11()
+layout(2:1)
+Acf(res1,main="ACF de Media")
+Acf(res2,main="ACF de residuales")
+x11()
+layout(2:1)
+hist(res1,,main="Histograma Media")
+hist(res2,main="Histograma residuales")
+
+Box.test(res1,lag=10,fitdf = 0)
+Box.test(res1,lag=10,fitdf = 0,type="Lj")
