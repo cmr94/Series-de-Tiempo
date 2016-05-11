@@ -1,0 +1,41 @@
+deso<-read.csv("C:\\Users\\SALA-C21\\Desktop\\base1.csv",header=TRUE)
+par<-ts(deso[,1],start=2005,frequency=4)
+mod1<-ses(par,alpha=0.1,initial="simple",h=4)
+mod2<-ses(par,alpha=0.6,initial="simple",h=4)
+mod3<-ses(par,alpha=0.9,initial="simple",h=4)
+
+X11()
+plot(mod1,plot.conf=FALSE,ylab="Participacion",xlab="Year",main="TASA DE PARTICIPACION",fcol="white",type="o")
+##GRAFICANDO AJUSTE
+lines(fitted(mod1),col="blue",type="o")
+lines(fitted(mod2),col="red",type="o")
+lines(fitted(mod3),col="green",type="o")
+##GRAFICANDO LA MEDIA DEL PRONOSTICO
+lines(mod1$mean,col="blue",type="o")
+lines(mod2$mean,col="red",type="o")
+lines(mod3$mean,col="green",type="o")
+legend("topleft",lty=1,col=c(1,"blue","red","green"),c("data",expression(alpha==0.1),expression(alpha==0.6),expression(alpha==0.9)),pch=10)
+x1<-accuracy(mod1)
+x2<-accuracy(mod2)
+x3<-accuracy(mod3)
+
+
+
+sub<-ts(deso[,6],start=2005,frequency=4)
+mod4<-ses(sub,alpha=0.0001,initial="simple",h=4)
+mod5<-ses(sub,alpha=0.5,initial="simple",h=4)
+mod6<-ses(sub,alpha=0.987,initial="simple",h=4)
+
+X11()
+plot(mod4,plot.conf=FALSE,ylab="Subocupacion",xlab="Year",main="TASA DE SUBOCUPACION",fcol="white",type="o")
+##GRAFICANDO AJUSTE
+lines(fitted(mod4),col="blue",type="o")
+lines(fitted(mod5),col="red",type="o")
+lines(fitted(mod6),col="green",type="o")
+##GRAFICANDO LA MEDIA DEL PRONOSTICO
+lines(mod4$mean,col="blue",type="o")
+lines(mod5$mean,col="red",type="o")
+lines(mod6$mean,col="green",type="o")
+legend("topleft",lty=1,col=c(1,"blue","red","green"),c("data",expression(alpha==0.0001),expression(alpha==0.5),expression(alpha==0.987)),pch=10)
+
+##SI ALPHA SE APROXIMA A 1 ENTONCES EL MOD. ES MAS PARECIDO AL COMPORTAMIENTO ORIGINAL.
