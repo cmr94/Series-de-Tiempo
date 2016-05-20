@@ -1,0 +1,38 @@
+#Antes de iniciar con los modelos ARIMA se definen dos conceptos que sirven utilizar modelos ARIMA
+
+#ESTACIONALIDAD
+#La estacionariedad es una ST, se presenta cuando la ST presenta tendencia y sin estacionalidad. 
+#En terminos generales una ST con estacionariedad no será predecible a largo plazo
+
+#DIFERENCIACION
+#La diferenciacion en una ST genera con las diferencias entre las observaciones consecutivas
+#Para identificar estacionariedad se utiliza la funcion de autocorrelacion (ACF)
+##Cuando la ST tiene estacionariedad la ACF se reducira relativamente rapido a cero
+##Cuando la ST no tiene estacionariedad la ACF se reduce lentamente
+##Una prueba para identificar estacionariedad es la prueba de raiz unitaria
+##En R esta prueba se calcula con adf.test(ST,alternative="stationary")
+
+##MODELO DE CAMINATA ALEATORIA
+#Este modelo se utilñiza para ST no estacionarias
+##CARACTERISTICAS
+#LArgos periodos de tendencia
+#Cambios repentinos e impredecibles en la direccion
+
+##IMAG
+#¿Con que metodo prinosticarian?
+##Metodo ingenuo
+
+##MODELOS AUTORrEGRESIVOS
+#Es un modelo autorregresivo se pronostica la ST usando una combinacion 
+#lineal de los valores paasados de la ST
+#La ecuacion de un modelo autorregresivo es: Yt=c+(PHI)1Y(t-1)+(PHI)2Y(t-2)+...+(PHI)pY(t-p)+et
+#Donde C es una constante y Ct es ruido blanco.
+#Una ventaja de los modelos  autorregresivos es que son muy flexiles para pronosticar ST
+
+#MODELO DE PROMEDIOS MOVILES
+#Este modelo utiliza los errores de prediccion anteriores
+#La ecuacion: Yt=CTE+(THETA)1e(t-1)+(THETA)2e(t-2)+...+(THETA)pe(t-p)+Ct
+#Cada valor sde Yt puede ser considerado como un promedio movil ponderado 
+#de los ultimos errores de pronostico
+
+#MODELO ARIMA (Autoregresive Integrated Moving Average)
